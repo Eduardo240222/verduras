@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <div class="topo">
+            <div class="menu-superior">
+                <button onclick="alert('Sobre a loja: Somos produtores locais com foco em qualidade!')">Sobre a Loja</button>
+                <button onclick="window.location.href='index.html'">Verduras</button>
+                <button onclick="window.location.href='carrinho.html'">Enviar Pedido</button>
+            </div>
+            <img src="img/verdura.jpg" alt="Cesta de Verduras">
+        </div>
+
+        <div class="conteudo">
+            <h2>Carrinho de Compras</h2>
+            <ul id="carrinho-lista">
+                <!-- Itens do carrinho serão exibidos aqui -->
+            </ul>
+        </div>
+    </div>
+    <script>
+        // Recupera os itens do carrinho do localStorage
+        const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+        const lista = document.getElementById('carrinho-lista');
+
+        if (carrinho.length === 0) {
+            lista.innerHTML = '<li>O carrinho está vazio.</li>';
+        } else {
+            carrinho.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item.nome + ' - Quantidade: ' + item.quantidade;
+                lista.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>
